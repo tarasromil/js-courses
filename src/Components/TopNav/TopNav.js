@@ -5,26 +5,22 @@ import ApikoLogo from '../ApikoLogo';
 import NavMenu from './NavMenu';
 import TopNavButton from '../Buttons/TopNavButton/TopNavButton';
 import Nav from '../Nav';
-import { withRouter } from '../../utils';
 
 
 const additionalItems = [
   { label: 'Blog' },
-  { label: 'GitHub' }
 ];
 
 
-const getMenuItems = ({ user, onUserChange, go, location }) => {
+const getMenuItems = ({ user, onUserChange }) => {
   let menuList = [
     {
       label: 'Sign In',
-      onClick: () => go('/signin'),
-      active: location.match('signin'),
+      href: '/signin',
     },
     {
       label: 'Sign Up',
-      onClick: () => go('/signup'),
-      active: location.match('signup')
+      href: '/signup',
     },
   ];
 
@@ -44,7 +40,7 @@ const getMenuItems = ({ user, onUserChange, go, location }) => {
 
 const TopNav = props => (
   <Nav>
-    <a onClick={() => props.go('/')}>
+    <a href="/">
       <ApikoLogo height={80} />
     </a>
 
@@ -70,4 +66,4 @@ TopNav.propTypes = {
 };
 
 
-export default withRouter(TopNav);
+export default TopNav;

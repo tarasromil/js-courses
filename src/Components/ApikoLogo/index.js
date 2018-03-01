@@ -1,3 +1,1 @@
-import ApikoLogo from './ApikoLogo';
-
-export default ApikoLogo;
+export { default } from './ApikoLogo';

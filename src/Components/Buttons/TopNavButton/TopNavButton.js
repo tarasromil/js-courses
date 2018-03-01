@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 
-const TopNavButton = styled.button`
+const TopNavButton = styled.a`
   border: none;
   cursor: pointer;
   margin-left: 10px;
   padding: 5px 10px;
-  background: ${props => props.active ? '#00a0ff' : '#ff9f00'};
-  color: ${props => props.active ? '#fff' : '#000'};
+  background: #ff9f00;
+  color: #000;
   border-radius: 5px;
   font-weight: 700;
   text-decoration: none;

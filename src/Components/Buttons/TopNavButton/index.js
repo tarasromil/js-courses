@@ -1,3 +1,1 @@
-import TopNavButton from './TopNavButton';
-
-export default TopNavButton;
+export { default } from './TopNavButton';

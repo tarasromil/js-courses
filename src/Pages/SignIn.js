@@ -1,9 +1,22 @@
 import React from 'react';
+
 import Button from '../Components/Buttons/Button';
-import { withRouter } from "../utils";
+import Form from '../Components/Form';
+import TextInput from "../Components/Form/TextInput";
+import FormHeader from "../Components/Form/FormHeader";
 
 
 const submitNotReady = errors => Object.values(errors).some(err => err);
+
+
+const initialState = {
+  username: '',
+  password: '',
+  errors: {
+    username: true,
+    password: true,
+  },
+};
 
 
 class SignIn extends React.Component {
@@ -13,62 +26,61 @@ class SignIn extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
 
-    this.state = {
-      username: 'Bob',
-      password: 'secret',
-      errors: {
-        username: false,
-        password: false,
-      }
-    };
+    this.state = initialState;
   }
-
+  
   onChange(event) {
     const { value, name } = event.target;
-
+    
     const errors = {
       ...this.state.errors,
-      [name]: value.length > 10
+      [name]: !(value.length > 0 && value.length < 15),
     };
 
     this.setState({ [name]: value, errors });
   }
 
-  onSubmit(event) {
-    event.preventDefault();
+  onSubmit() {
+    const { username, password, errors } = this.state;
+    if (!submitNotReady(errors)) {
+      this.props.onUserChange({ username, password, id: 1 });
 
-    const { username, password } = this.state;
-
-    this.props.onUserChange({ username, password });
-    this.props.go('/');
+      this.setState(initialState);
+    }
   }
 
   render() {
+    const { username, password, errors } = this.state;
+
     return (
-      <div>
-        <h2>Sign In</h2>
+      <Form onSubmit={this.onSubmit}>
+        <FormHeader>Sign In</FormHeader>
 
-        <form onSubmit={this.onSubmit}>
-          <div>
-            <input value={this.state.username} name="username" type="text" onChange={this.onChange} />
-          </div>
+        <TextInput
+          autoFocus
+          value={username}
+          name="username"
+          onChange={this.onChange}
+        />
 
-          <div>
-            <input value={this.state.password} name="password" type="password" onChange={this.onChange}/>
-          </div>
+        <TextInput
+          value={password}
+          name="password"
+          type="password"
+          onChange={this.onChange}
+        />
 
-          <div>
-            <Button
-              disabled={submitNotReady(this.state.errors)}
-            >
-              Sign In
-            </Button>
-          </div>
-        </form>
-      </div>
+        <Button
+          primary
+          type="submit"
+          disabled={submitNotReady(errors)}
+        >
+          Sign In
+        </Button>
+      </Form>
     )
   }
 }
 
 
-export default withRouter(SignIn);
+export default SignIn;

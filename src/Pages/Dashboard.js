@@ -1,37 +1,52 @@
 import React from 'react';
-import data from '../data.json';
-import Button from "../Components/Buttons/Button/Button";
+
+import Button from '../Components/Buttons/Button';
+import Form from '../Components/Form';
+import TextInput from '../Components/Form/TextInput';
+import QuestionList from '../Components/QuestionList';
+
+
+const lower = text => text.toLowerCase();
+
+
+const isMatch = (text, search) => lower(text).match(search);
+
+
+const matchBy = (byList, search) => item => byList.some(key => isMatch(item[key], search));
+
+
+const matchByList = ['title', 'body'];
 
 
 class Dashboard extends React.Component {
   state = {
-    data: [],
-    isFetching: true,
+    search: '',
   };
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({ data, isFetching: false })
-    }, 1000);
-  }
-
   render() {
+    console.log('this.props: ', this.props);
+    const { search } = this.state;
+
+    const filteredData = this.props.data.filter(matchBy(matchByList, search));
+
     return (
       <div>
-        <h2>Dashboard</h2>
+        <h2>Dashboard ({filteredData.length})</h2>
 
-        <Button>Ask now!</Button>
+        <Form direction="row">
+          <TextInput
+            placeholder="Search..."
+            autoFocus
+            value={search}
+            onChange={e => this.setState({ search: lower(e.target.value) })}
+          />
 
-        {!this.state.isFetching ?
-          this.state.data.map(item => (
-            <div key={item._id}>
-              <h3>{item.title}</h3>
-              <div>{item.description}</div>
-            </div>
-          )) : (
-            <h1>Loading...</h1>
-          )
-        }
+          <Button primary>
+            Ask now!
+          </Button>
+        </Form>
+
+        <QuestionList list={filteredData} />
       </div>
     )
   }
