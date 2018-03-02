@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import { setRouter } from './utils';
 
-import TopNav from './Components/TopNav';
+import TopNavContainer from './Components/TopNav/Container';
 import Layout from './Components/Layout';
 import AppLoader from './Components/Loaders/AppLoader';
 
@@ -41,7 +41,7 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <TopNav
+        <TopNavContainer
           user={this.state.user}
           onUserChange={this.handleUser}
         />

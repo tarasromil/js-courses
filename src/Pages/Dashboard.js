@@ -30,8 +30,6 @@ class Dashboard extends React.Component {
 
     return (
       <div>
-        <h2>Dashboard ({filteredData.length})</h2>
-
         <Form direction="row">
           <TextInput
             placeholder="Search..."
@@ -44,6 +42,8 @@ class Dashboard extends React.Component {
             Ask now!
           </TopNavButton>
         </Form>
+
+        <h2>Users ask: ({filteredData.length})</h2>
 
         <QuestionList list={filteredData} />
       </div>
