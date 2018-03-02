@@ -1,7 +1,6 @@
 import React from 'react';
 
 import TopNavButton from '../Components/Buttons/LinkButton';
-import Form from '../Components/Form';
 import TextInput from '../Components/Form/TextInput';
 import QuestionList from '../Components/QuestionList';
 
@@ -19,37 +18,53 @@ const matchByList = ['title', 'body'];
 
 
 class Dashboard extends React.Component {
-  state = {
-    search: '',
-  };
-
   render() {
-    const { search } = this.state;
-    // we add a comment
-    const filteredData = this.props.data.filter(matchBy(matchByList, search));
-
     return (
       <div>
-        <Form direction="row">
-          <TextInput
-            placeholder="Search..."
-            autoFocus
-            value={search}
-            onChange={e => this.setState({ search: lower(e.target.value) })}
-          />
+        <TextInput
+          placeholder="Search..."
+          autoFocus
+          value={this.props.search}
+          onChange={this.props.onSearchChange}
+        />
 
-          <TopNavButton href="/new-question">
-            Ask now!
-          </TopNavButton>
-        </Form>
+        <TopNavButton href="/new-question">
+          Ask now!
+        </TopNavButton>
 
-        <h2>Users ask: ({filteredData.length})</h2>
+        <h2>Users ask: ({this.props.data.length})</h2>
 
-        <QuestionList list={filteredData} />
+        <QuestionList list={this.props.data} />
       </div>
     )
   }
 }
 
 
-export default Dashboard;
+const enhance = (BaseComponent) => {
+  const factory = React.createFactory(BaseComponent);
+
+  return class DashboardContainer extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        search: '',
+      };
+
+      this.onSearchChange = event => this.setState({ search: lower(event.target.value) });
+    }
+
+
+    render() {
+      return factory({
+        ...this.props,
+        ...this.state,
+        data: this.props.data.filter(matchBy(matchByList, this.state.search)),
+        onSearchChange: this.onSearchChange,
+      });
+    }
+  };
+};
+
+
+export default enhance(Dashboard);
