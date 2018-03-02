@@ -28,7 +28,7 @@ class Dashboard extends React.Component {
   }
   render() {
     const { search } = this.state;
-
+    // we add a comment
     const filteredData = this.props.data.filter(matchBy(matchByList, search));
 
     return (
