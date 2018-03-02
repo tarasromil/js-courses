@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { withRouter } from '../utils';
+import { withRoute } from '../utils';
 
 
 const Layout = styled.section`
@@ -15,7 +15,7 @@ const Layout = styled.section`
 `;
 
 
-export default withRouter(true)(Layout);
+export default withRoute(Layout);
 
 
 

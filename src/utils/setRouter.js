@@ -20,6 +20,10 @@ const setRouter = (routes) => (BaseComponent) => {
     constructor() {
       super();
 
+      this.state = {
+        location: window.location.pathname,
+      };
+
       this.go = (location) => {
         if (this.state.location !== location) {
           this.setState(
@@ -36,18 +40,18 @@ const setRouter = (routes) => (BaseComponent) => {
           this.go(anchor.attributes.href.value);
         }
       };
+
+      this.onPopState = () => this.setState({ location: window.location.pathname });
     }
 
-    state = {
-      location: window.location.pathname,
-    };
-
     componentDidMount() {
-      document.addEventListener('click', this.preventRedirect);
+      window.document.addEventListener('click', this.preventRedirect);
+      window.addEventListener('popstate', this.onPopState);
     }
 
     componentWillUnmount() {
-      document.removeEventListener('click', this.preventRedirect);
+      window.document.removeEventListener('click', this.preventRedirect);
+      window.removeEventListener('popstate', this.onPopState);
     }
 
     getChildContext() {

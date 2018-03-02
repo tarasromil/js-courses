@@ -23,9 +23,6 @@ class Dashboard extends React.Component {
     search: '',
   };
 
-  componentDidMount() {
-    console.timeEnd('start')
-  }
   render() {
     const { search } = this.state;
     // we add a comment

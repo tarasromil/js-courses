@@ -31,7 +31,6 @@ class App extends Component {
     fetch(DATA_URL)
       .then(response => response.json())
       .then(data => data.map(item => ({ ...item, date: Date.now() })))
-      .then(data => {console.time('start'); return data})
       .then(data => this.setState({ data, isFetching: false }))
   }
 
