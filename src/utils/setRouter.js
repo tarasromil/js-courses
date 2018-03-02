@@ -9,6 +9,9 @@ const childContextTypes = {
 };
 
 
+const isPreventRedicrect = anchor => anchor && anchor.href && anchor.href.match(window.location.origin);
+
+
 const setRouter = (routes) => (BaseComponent) => {
   const factory = React.createFactory(BaseComponent);
 
@@ -28,7 +31,7 @@ const setRouter = (routes) => (BaseComponent) => {
 
       this.preventRedirect = (event) => {
         const anchor = event.path.find(node => node.href);
-        if (anchor) {
+        if (isPreventRedicrect(anchor)) {
           event.preventDefault();
           this.go(anchor.attributes.href.value);
         }

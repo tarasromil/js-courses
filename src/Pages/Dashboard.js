@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from '../Components/Buttons/Button';
+import TopNavButton from '../Components/Buttons/LinkButton';
 import Form from '../Components/Form';
 import TextInput from '../Components/Form/TextInput';
 import QuestionList from '../Components/QuestionList';
@@ -23,8 +23,10 @@ class Dashboard extends React.Component {
     search: '',
   };
 
+  componentDidMount() {
+    console.timeEnd('start')
+  }
   render() {
-    console.log('this.props: ', this.props);
     const { search } = this.state;
 
     const filteredData = this.props.data.filter(matchBy(matchByList, search));
@@ -41,9 +43,9 @@ class Dashboard extends React.Component {
             onChange={e => this.setState({ search: lower(e.target.value) })}
           />
 
-          <Button primary>
+          <TopNavButton href="/new-question">
             Ask now!
-          </Button>
+          </TopNavButton>
         </Form>
 
         <QuestionList list={filteredData} />

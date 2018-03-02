@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-const TopNavButton = styled.a`
+const LinkButton = styled.a`
   border: none;
   cursor: pointer;
   margin-left: 10px;
@@ -25,4 +25,4 @@ const TopNavButton = styled.a`
 `;
 
 
-export default TopNavButton;
+export default LinkButton;

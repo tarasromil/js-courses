@@ -14,7 +14,7 @@ const QuestionList = ({ list }) => (
     {list.length > 0 ?
       list.map(item => (
         <li key={item.id}>
-          <h3><a href={`/questions/${item.id}`}>{item.title}</a></h3>
+          <h3><a href={`/question/${item.id}`}>{item.title}</a></h3>
           <span>{item.body}</span>
         </li>
       )) : (

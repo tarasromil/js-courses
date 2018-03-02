@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ApikoLogo from "../ApikoLogo/ApikoLogo";
+import ApikoLogo from "../../ApikoLogo";
 
 const Wrapper = styled.span`
   position: fixed;
