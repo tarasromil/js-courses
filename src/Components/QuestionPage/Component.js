@@ -3,7 +3,7 @@ import React from 'react';
 
 const QuestionPage = ({ question }) => (
   <div>
-    {console.log(question)}
+    {question.title}
   </div>
 );
 
