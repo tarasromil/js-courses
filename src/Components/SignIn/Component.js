@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Button from '../Components/Buttons/Button';
-import Form from '../Components/Form';
-import TextInput from "../Components/Form/TextInput";
-import FormHeader from "../Components/Form/FormHeader";
+import Button from '../Buttons/Button/index';
+import Form from '../Form/index';
+import TextInput from "../Form/TextInput/index";
+import FormHeader from "../Form/FormHeader";
 
 
 const submitNotReady = errors => Object.values(errors).some(err => err);
@@ -28,10 +28,10 @@ class SignIn extends React.Component {
 
     this.state = initialState;
   }
-  
+
   onChange(event) {
     const { value, name } = event.target;
-    
+
     const errors = {
       ...this.state.errors,
       [name]: !(value.length > 0 && value.length < 15),
@@ -44,6 +44,8 @@ class SignIn extends React.Component {
     const { username, password, errors } = this.state;
     if (!submitNotReady(errors)) {
       this.props.onUserChange({ username, password, id: 1 });
+
+      this.props.router.go('/')
 
       this.setState(initialState);
     }
@@ -69,6 +71,8 @@ class SignIn extends React.Component {
           type="password"
           onChange={this.onChange}
         />
+
+        <a href="/forgot-password">Forgot password?</a>
 
         <Button
           primary

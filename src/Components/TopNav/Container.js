@@ -1,4 +1,6 @@
 import { createFactory } from 'react';
+import T from 'prop-types';
+import { compose, getContext } from 'recompose';
 import TopNavComponent from './Component';
 
 
@@ -26,16 +28,17 @@ const generateList = props => [].concat(
 );
 
 
-const withContainer = mapProps => (BaseComponent) => {
+const withContainer = (BaseComponent) => {
   const factory = createFactory(BaseComponent);
 
-  return props => factory({ ...props, list: generateList(mapProps(props)) });
+  return props => factory({ ...props, list: generateList(props) });
 };
 
 
-export default withContainer(
-  props => ({
-    user: props.user,
-    onUserChange: props.onUserChange,
-  })
-)(TopNavComponent);
+export default compose(
+  getContext({
+    user: T.object,
+    onUserChange: T.func,
+  }),
+  withContainer,
+)(TopNavComponent)
