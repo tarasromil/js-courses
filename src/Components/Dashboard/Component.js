@@ -19,24 +19,36 @@ const PanelWrapper = styled.div`
   justify-content: space-between;
 `;
 
-
 const ButtonWrapper = styled.span`
   display: inline-flex;
   flex: 1;
+  padding: 10px;
+  margin: 5px;
   justify-content: flex-end;
-  padding: 15px;
+`;
+
+const SortByDropdown = styled.select`
+  display: inline-flex;
+  flex: 1;
+  margin: 5px;
+  font-size: 16pt;
 `;
 
 
-const Dashboard = ({ search, onSearchChange }) => (
+const Dashboard = ({ search, onChangeSearch, sortBy, onChangeSortBy }) => (
   <MainWrapper>
     <PanelWrapper>
       <TextInput
         placeholder="Search..."
         autoFocus
         value={search}
-        onChange={onSearchChange}
+        onChange={onChangeSearch}
       />
+
+      <SortByDropdown value={sortBy} onChange={onChangeSortBy}>
+        <option value="title">Title</option>
+        <option value="createdAt">Time</option>
+      </SortByDropdown>
 
       <ButtonWrapper>
         <TopNavButton href="/new-question">
@@ -45,7 +57,7 @@ const Dashboard = ({ search, onSearchChange }) => (
       </ButtonWrapper>
     </PanelWrapper>
 
-    <QuestionList search={search} />
+    <QuestionList search={search} sortBy={sortBy} />
   </MainWrapper>
 );
 

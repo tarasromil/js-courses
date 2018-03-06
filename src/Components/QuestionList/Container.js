@@ -1,10 +1,21 @@
 import { branch, compose, lifecycle, renderComponent, withProps, withStateHandlers } from 'recompose';
+import * as R from 'ramda';
 import { db } from '../../utils';
 import AppLoader from '../Loaders/AppLoader';
 import Component from './Component';
 
 
 const LIMIT = 10;
+
+const matchBy = R.curry((search, string) => new RegExp(`${search}`, 'gi').test(string));
+
+const filterByTitle = search => R.filter(R.compose(matchBy(search), R.prop('title')));
+
+const prepareQuestions = ({ questions, search, limit, sortBy }) => R.compose(
+  R.sortBy(R.prop(sortBy)),
+  R.slice(0, limit),
+  filterByTitle(search),
+)(questions);
 
 
 const enhance = compose(
@@ -24,14 +35,7 @@ const enhance = compose(
     renderComponent(AppLoader)
   ),
 
-  withProps(
-    ({ questions, search, limit }) => ({
-      questions: questions
-        .filter(item => new RegExp(search, 'gi').test(item.title))
-        .slice(0, limit),
-    })
-  ),
-
+  withProps(props => ({ questions: prepareQuestions(props) })),
 );
 
 

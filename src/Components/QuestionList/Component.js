@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from "../Buttons/Button/index";
 import QuestionItem from "../QuestionItem/Component";
+import Header from '../Header/Component';
 
 
 const List = styled.ul`
@@ -12,7 +13,7 @@ const List = styled.ul`
 
 const QuestionList = ({ questions, onIncreaseLimit }) => (
   <React.Fragment>
-    <h2>Users ask: ({questions.length})</h2>
+    <Header>Users ask: ({questions.length})</Header>
 
     <List>
       {questions.length > 0 ?

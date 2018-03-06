@@ -1,13 +1,47 @@
 import React from 'react';
+import TextInput from "../Form/TextInput/TextInput";
+import Button from "../Buttons/Button/index";
+import FormHeader from "../Header/Component";
+import Form from "../Form/Component";
 
 
-class SignUp extends React.Component {
-  render() {
-    return (
-      <div>SignUp</div>
-    )
-  }
-}
+const SignUp = ({ onSubmit, submitReady, onChange, username, password, email }) => (
+  <Form onSubmit={onSubmit}>
+    <FormHeader>Sign Up</FormHeader>
+
+    <TextInput
+      autoFocus
+      value={username}
+      name="username"
+      placeholder="Username"
+      onChange={onChange('username')}
+    />
+
+    <TextInput
+      value={email}
+      name="email"
+      type="email"
+      placeholder="Email"
+      onChange={onChange('email')}
+    />
+
+    <TextInput
+      value={password}
+      name="password"
+      type="password"
+      placeholder="Password"
+      onChange={onChange('password')}
+    />
+
+    <Button
+      primary
+      type="submit"
+      disabled={!submitReady}
+    >
+      Sign Up
+    </Button>
+  </Form>
+);
 
 
 export default SignUp;

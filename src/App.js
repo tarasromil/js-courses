@@ -9,9 +9,10 @@ import Layout from './Components/Layout';
 
 import Dashboard from './Components/Dashboard/Container';
 import QuestionPage from './Components/QuestionPage/Container'
-import SignIn from './Components/SignIn/Component';
-import SignUp from './Components/SignUp/Component';
-import NotFound from './Components/NotFound/Cinponent';
+import SignIn from './Components/SignIn/Container';
+import SignUp from './Components/SignUp/Container';
+import RestorePassword from './Components/RestorePassword/Container';
+import NotFound from './Components/NotFound/Component';
 
 
 const App = () => (
@@ -28,6 +29,7 @@ const enhance = compose(
     '/': Dashboard,
     '/signin': SignIn,
     '/signup': SignUp,
+    '/restore-password': RestorePassword,
     '/question/:questionId:': QuestionPage,
     '*': NotFound
   }) ,

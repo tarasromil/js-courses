@@ -7,7 +7,6 @@ const LinkButton = styled.a`
   padding: 5px 10px;
   background: #ff9f00;
   color: #000;
-  border-radius: 5px;
   font-weight: 700;
   text-decoration: none;
   transition: box-shadow 300ms, color 250ms, background 100ms;
