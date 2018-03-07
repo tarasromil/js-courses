@@ -26,7 +26,7 @@ const enhance = compose(
 
   lifecycle({
     async componentWillMount() {
-      const questions = await db('questions').find();
+      const questions = await db.questions.find();
       this.setState({ questions, isFetching: false });
     },
   }),

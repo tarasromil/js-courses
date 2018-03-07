@@ -10,7 +10,7 @@ const enhance = compose(
   lifecycle({
     async componentWillMount() {
       const { questionId } = this.props.router.params;
-      const question = await db('questions').findOne(questionId);
+      const question = await db.questions.findOne(questionId);
       this.setState({ question, isFetching: false });
     },
   }),
