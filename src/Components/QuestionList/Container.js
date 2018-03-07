@@ -12,8 +12,8 @@ const matchBy = R.curry((search, string) => new RegExp(`${search}`, 'gi').test(s
 const filterByTitle = search => R.filter(R.compose(matchBy(search), R.prop('title')));
 
 const prepareQuestions = ({ questions, search, limit, sortBy }) => R.compose(
+  R.take(limit),
   R.sortBy(R.prop(sortBy)),
-  R.slice(0, limit),
   filterByTitle(search),
 )(questions);
 
@@ -25,8 +25,9 @@ const enhance = compose(
   ),
 
   lifecycle({
-    componentWillMount() {
-      db.find().then(questions => this.setState({ questions, isFetching: false }))
+    async componentWillMount() {
+      const questions = await db('questions').find();
+      this.setState({ questions, isFetching: false });
     },
   }),
 

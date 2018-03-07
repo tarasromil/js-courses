@@ -8,9 +8,10 @@ const enhance = compose(
   withStateHandlers({ question: {}, isFetching: true }),
 
   lifecycle({
-    componentWillMount() {
+    async componentWillMount() {
       const { questionId } = this.props.router.params;
-      db.findOne(questionId).then(question => this.setState({ question, isFetching: false }))
+      const question = await db('questions').findOne(questionId);
+      this.setState({ question, isFetching: false });
     },
   }),
 
