@@ -28,9 +28,9 @@ const ButtonWrapper = styled.span`
 `;
 
 const SortByDropdown = styled.select`
-  display: inline-flex;
-  flex: 1;
+  flex: 2;
   margin: 5px;
+  padding: 0 10px;
   font-size: 16pt;
 `;
 

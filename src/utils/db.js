@@ -10,7 +10,7 @@ const idEquals = _id => R.propEq('_id', Number(_id));
 
 const findById = _id => R.find(idEquals(_id));
 
-const findIndexById = _id => R.find(idEquals(_id));
+const findIndexById = _id => R.findIndex(idEquals(_id));
 
 
 const COLLECTIONS = {
