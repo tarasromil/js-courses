@@ -61,7 +61,7 @@ const QuestionItem = ({ question }) => (
       <Title href={`/question/${question._id}`}>
         {question.title}
       </Title>
-      <Edit href="/">Edit</Edit>
+      <Edit href={`/question-form/${question._id}`}>Edit</Edit>
     </TopWrapper>
 
     <BottomWrapper>

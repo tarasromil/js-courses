@@ -79,7 +79,10 @@ const createCollection = name => ({
   },
   findOne: async function(_id) {
     const found = findById(_id)(COLLECTIONS[name]);
-    return found || await fetchAndMap(getUrl(name, _id), MAPS[name]).then(item => {
+    if (found) {
+      return found;
+    }
+    return await fetchAndMap(getUrl(name, _id), MAPS[name]).then(item => {
       this.find();
       return item;
     });
