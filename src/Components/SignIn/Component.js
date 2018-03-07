@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Button from '../Buttons/Button/index';
 import Form from '../Form/Component';
 import TextInput from "../Form/TextInput/index";
-import FormHeader from "../Header/Component";
+import Header from "../Header/Component";
 
 
 const ForgotLink = styled.a`
@@ -14,7 +14,7 @@ const ForgotLink = styled.a`
 
 const SignIn = ({ username, password, submitReady, onChange, onSubmit }) => (
   <Form onSubmit={onSubmit}>
-    <FormHeader>Sign In</FormHeader>
+    <Header>Sign In</Header>
 
     <TextInput
       autoFocus

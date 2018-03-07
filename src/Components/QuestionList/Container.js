@@ -11,9 +11,17 @@ const matchBy = R.curry((search, string) => new RegExp(`${search}`, 'gi').test(s
 
 const filterByTitle = search => R.filter(R.compose(matchBy(search), R.prop('title')));
 
+
+const DIRECTION = {
+  title: R.ascend,
+  createdAt: R.descend,
+};
+
+const sortWith = sortBy => R.sortWith([DIRECTION[sortBy](R.prop(sortBy))]);
+
 const prepareQuestions = ({ questions, search, limit, sortBy }) => R.compose(
   R.take(limit),
-  R.sortBy(R.prop(sortBy)),
+  sortWith(sortBy),
   filterByTitle(search),
 )(questions);
 

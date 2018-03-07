@@ -46,12 +46,12 @@ const Dashboard = ({ search, onChangeSearch, sortBy, onChangeSortBy }) => (
       />
 
       <SortByDropdown value={sortBy} onChange={onChangeSortBy}>
-        <option value="title">Title</option>
         <option value="createdAt">Time</option>
+        <option value="title">Title</option>
       </SortByDropdown>
 
       <ButtonWrapper>
-        <TopNavButton href="/new-question">
+        <TopNavButton href="/question-form">
           Ask now!
         </TopNavButton>
       </ButtonWrapper>

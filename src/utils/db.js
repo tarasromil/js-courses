@@ -87,11 +87,12 @@ const createCollection = name => ({
   insert: function(doc) {
     const ids = COLLECTIONS[name].map(R.prop('_id'));
     const lastId = Math.max(...ids);
-    const newDoc = { ...doc, _id: lastId + 1 };
+    const newDoc = { ...doc, createdAt: new Date(), _id: lastId + 1 };
     COLLECTIONS[name] = COLLECTIONS[name].concat(newDoc);
     return newDoc;
   },
-  update: function(_id, fields) {
+  update: function(id, fields) {
+    const _id = Number(id);
     const index = findIndexById(_id)(COLLECTIONS[name]);
     const doc = COLLECTIONS[name][index];
     const newDoc = { ...doc, ...fields, _id };

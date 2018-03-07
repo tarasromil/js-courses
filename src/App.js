@@ -12,6 +12,7 @@ import QuestionPage from './Components/QuestionPage/Container'
 import SignIn from './Components/SignIn/Container';
 import SignUp from './Components/SignUp/Container';
 import RestorePassword from './Components/RestorePassword/Container';
+import QuestionForm from './Components/QuestionForm/Container';
 import NotFound from './Components/NotFound/Component';
 
 
@@ -31,6 +32,8 @@ const enhance = compose(
     '/signup': SignUp,
     '/restore-password': RestorePassword,
     '/question/:questionId:': QuestionPage,
+    '/question-form': QuestionForm,
+    '/question-form/:questionId:': QuestionForm,
     '*': NotFound
   }) ,
 

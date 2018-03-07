@@ -3,7 +3,7 @@ import Component from './Component';
 
 
 const enhance = withStateHandlers(
-  { search: '', sortBy: 'title' },
+  { search: '', sortBy: 'createdAt' },
   {
     onChangeSearch: () => event => ({ search: event.target.value }),
     onChangeSortBy: () => event => ({ sortBy: event.target.value }),

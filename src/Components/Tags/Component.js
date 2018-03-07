@@ -15,6 +15,7 @@ const Tag = styled.span`
   background: #009c00;
   color: #fff;
   padding: 5px 10px;
+  margin-right: 5px;
 `;
 
 

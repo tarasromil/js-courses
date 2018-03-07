@@ -1,13 +1,13 @@
 import React from 'react';
 import TextInput from "../Form/TextInput/TextInput";
 import Button from "../Buttons/Button/index";
-import FormHeader from "../Header/Component";
+import Header from "../Header/Component";
 import Form from "../Form/Component";
 
 
 const SignUp = ({ onSubmit, submitReady, onChange, username, password, email }) => (
   <Form onSubmit={onSubmit}>
-    <FormHeader>Sign Up</FormHeader>
+    <Header>Sign Up</Header>
 
     <TextInput
       autoFocus
