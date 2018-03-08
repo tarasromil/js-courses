@@ -2,9 +2,8 @@ import styled from 'styled-components';
 
 
 const TextInput = styled.input`
-  width: 50%;
+  width: 100%;
   padding: 8px 20px;
-  margin: 5px;
   font-size: 16pt;
 `;
 

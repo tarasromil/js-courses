@@ -1,28 +1,20 @@
 import React from 'react';
-import T from 'prop-types';
-import logo from './ApikoLogo.jpg';
+import short from './short.svg';
+import long from './long.png';
 import styled from 'styled-components';
 
 
 const Img = styled.img`
   cursor: pointer;
-  height: ${props => props.height}
 `;
 
 const ApikoLogo = props => (
   <Img
-    src={logo}
+    src={props.long ? long : short}
     alt="Apiko Logo"
     {...props}
   />
 );
 
-ApikoLogo.propTypes = {
-  height: T.number,
-};
-
-ApikoLogo.defaultProps = {
-  height: 80,
-};
 
 export default ApikoLogo;

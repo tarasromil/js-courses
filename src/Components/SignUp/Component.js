@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInput from "../Form/TextInput/TextInput";
+import TextInput from "../TextInput/TextInput";
 import Button from "../Buttons/Button/index";
 import Header from "../Header/Component";
 import Form from "../Form/Component";

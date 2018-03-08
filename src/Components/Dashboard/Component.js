@@ -1,7 +1,7 @@
 import React from 'react';
 
 import LinkButton from '../Buttons/LinkButton';
-import TextInput from '../Form/TextInput';
+import TextInput from '../TextInput';
 import QuestionList from '../QuestionList/Container';
 import styled from 'styled-components';
 
@@ -17,21 +17,27 @@ const PanelWrapper = styled.div`
   flex: 1;
   flex-direction: row;
   justify-content: space-between;
+  
+  > ${TextInput} {
+    flex-basis: 60%;
+  }
+  
+  > *:not(:last-child) {
+    margin-right: 10px;
+  }
 `;
 
-const ButtonWrapper = styled.span`
-  display: inline-flex;
-  flex: 1;
-  padding: 10px;
-  margin: 5px;
-  justify-content: flex-end;
-`;
+const AskButton = styled.span`
+  flex-basis: 20%;
+  align-items: center;
+  font-size: 16pt;
+`.withComponent(LinkButton);
 
 const SortByDropdown = styled.select`
-  flex: 2;
-  margin: 5px;
+  flex-basis: 20%;
   padding: 0 10px;
   font-size: 16pt;
+  background: #fff;
 `;
 
 
@@ -50,11 +56,9 @@ const Dashboard = ({ search, onChangeSearch, sortBy, onChangeSortBy }) => (
         <option value="title">Title</option>
       </SortByDropdown>
 
-      <ButtonWrapper>
-        <LinkButton to="/question/new">
-          Ask now!
-        </LinkButton>
-      </ButtonWrapper>
+      <AskButton to="/question/new">
+        Ask now!
+      </AskButton>
     </PanelWrapper>
 
     <QuestionList search={search} sortBy={sortBy} />

@@ -70,7 +70,10 @@ const enhance = compose(
       }
 
       history.push('/');
-    }
+    },
+    onRemove: ({ match, history }) => () => {
+      history.push('/');
+    },
   })
 );
 

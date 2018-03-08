@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const QuestionWrapper = styled.li`
   padding: 10px;
   margin-bottom: 5px;
-  box-shadow: 0 8px 12px #bf7406;
+  box-shadow: 0 8px 8px #bf7406;
 `;
 
 const TopWrapper = styled.div`
@@ -31,7 +31,7 @@ const Title = styled.a`
   color: #0f0f0f;
   font-weight: 700;
   text-decoration: none;
-  font-size: 16pt;
+  font-size: 12pt;
   padding-bottom: 10px;
 `.withComponent(Link);
 

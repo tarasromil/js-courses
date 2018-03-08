@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInput from "../Form/TextInput";
+import TextInput from "../TextInput";
 import Button from "../Buttons/Button";
 import Header from "../Header/Component";
 import Form from "../Form/Component";
@@ -7,19 +7,24 @@ import styled from 'styled-components';
 
 
 const Description = styled.textarea`
-  width: 50%;
+  width: 100%;
   padding: 8px 20px;
-  margin: 5px;
   font-size: 16pt;
   resize: vertical;
   min-height: 200px;
 `;
 
 
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+
 const getHeader = isExists => isExists ? 'Edit Question' : 'Add Question';
 
 
-const QuestionForm = ({ title, description, tags, onChange, onSubmit, match, submitReady }) => (
+const QuestionForm = ({ title, description, tags, submitReady, onChange, onSubmit, onRemove, match }) => (
   <Form onSubmit={onSubmit}>
     <Header>
       {getHeader(match.params.questionId)}
@@ -47,13 +52,22 @@ const QuestionForm = ({ title, description, tags, onChange, onSubmit, match, sub
       onChange={onChange('tags')}
     />
 
-    <Button
-      primary
-      type="submit"
-      disabled={!submitReady}
-    >
-      Submit
-    </Button>
+
+    <ButtonWrapper>
+      {!!match.params.questionId && (
+        <Button onClick={onRemove}>
+          Remove
+        </Button>
+      )}
+
+      <Button
+        primary
+        type="submit"
+        disabled={!submitReady}
+      >
+        Submit
+      </Button>
+    </ButtonWrapper>
   </Form>
 );
 

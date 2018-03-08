@@ -6,21 +6,35 @@ import styled from 'styled-components';
 
 import ApikoLogo from '../ApikoLogo';
 import LinkButton from '../Buttons/LinkButton';
-import Nav from '../Nav';
 
+
+const Nav = styled.nav`
+  display: flex;
+  padding: 15px 0;
+  justify-content: space-between;
+`;
 
 const NavMenu = styled.menu`
-  padding: 10px 30px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  
+  > ${LinkButton}:not(:last-child) {
+    margin-right: 10px;
+  }
 `;
+
+
+const Logo = styled.a`
+  display: flex;
+`.withComponent(Link);
 
 
 const TopNav = ({ list }) => (
   <Nav>
-    <Link to="/">
-      <ApikoLogo height={80} />
-    </Link>
-
-    <h2>Ask Apiko</h2>
+    <Logo to="/">
+      <ApikoLogo height={50} long />
+    </Logo>
 
     <NavMenu>
       {list.map(({ label, ...props }) => (

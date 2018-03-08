@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 
 import Button from '../Buttons/Button/index';
 import Form from '../Form/Component';
-import TextInput from "../Form/TextInput/index";
+import TextInput from "../TextInput/index";
 import Header from "../Header/Component";
 
 
 const ForgotLink = styled.a`
   display: inline-flex;
+  align-self: center;
   padding: 10px;
 `.withComponent(Link);
 

@@ -19,15 +19,14 @@ const defaultProps = {
 
 
 const Form = styled.form`
-  margin: 0;
+  width: 50%;
   padding: 0;
+  margin: auto;
   display: flex;
-  flex: 1;
   flex-direction: ${props => props.direction};
-  justify-content: space-between;
 
-  & > * {
-    align-self: center;
+  & > *:not(:last-child) {
+    margin-bottom: 10px;
   }
 `;
 
