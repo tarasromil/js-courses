@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 
 const LinkButton = styled.a`
@@ -19,7 +20,7 @@ const LinkButton = styled.a`
     color: #fff;
     background: #ff6500;
   }
-`;
+`.withComponent(Link);
 
 
 export default LinkButton;

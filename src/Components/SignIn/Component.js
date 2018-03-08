@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
 import Button from '../Buttons/Button/index';
 import Form from '../Form/Component';
 import TextInput from "../Form/TextInput/index";
@@ -9,7 +11,7 @@ import Header from "../Header/Component";
 const ForgotLink = styled.a`
   display: inline-flex;
   padding: 10px;
-`;
+`.withComponent(Link);
 
 
 const SignIn = ({ username, password, submitReady, onChange, onSubmit }) => (
@@ -32,7 +34,7 @@ const SignIn = ({ username, password, submitReady, onChange, onSubmit }) => (
       onChange={onChange('password')}
     />
 
-    <ForgotLink href="/restore-password">Forgot password?</ForgotLink>
+    <ForgotLink to="/restore-password">Forgot password?</ForgotLink>
 
     <Button
       primary

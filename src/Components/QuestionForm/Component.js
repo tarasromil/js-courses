@@ -19,10 +19,10 @@ const Description = styled.textarea`
 const getHeader = isExists => isExists ? 'Edit Question' : 'Add Question';
 
 
-const QuestionForm = ({ title, description, tags, onChange, onSubmit, router, submitReady }) => (
+const QuestionForm = ({ title, description, tags, onChange, onSubmit, match, submitReady }) => (
   <Form onSubmit={onSubmit}>
     <Header>
-      {getHeader(router.params.questionId)}
+      {getHeader(match.params.questionId)}
     </Header>
 
     <TextInput

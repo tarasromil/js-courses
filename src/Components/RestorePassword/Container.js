@@ -1,5 +1,6 @@
 import { compose, withHandlers } from 'recompose';
 import { withInputs } from 'custom-hoc';
+import { withRouter } from 'react-router';
 import Component from './Component';
 
 
@@ -9,13 +10,15 @@ const enhance = compose(
     newPassword: { validate: value => value.length < 20 && value.length > 5 },
   }),
 
+  withRouter,
+
   withHandlers({
-    onSubmit: ({ oldPassword, newPassword, router }) => () => {
+    onSubmit: ({ oldPassword, newPassword, history }) => () => {
       alert(`
         Old: ${oldPassword}
         New: ${newPassword}
       `);
-      router.go('/signin')
+      history.push('/signin')
     }
   }),
 );

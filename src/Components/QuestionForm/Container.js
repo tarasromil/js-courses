@@ -1,5 +1,6 @@
 import { compose, withHandlers, lifecycle, withStateHandlers, branch, renderComponent } from 'recompose';
 import { withInputs } from 'custom-hoc';
+import { withRouter } from 'react-router';
 import * as R from 'ramda';
 import { db } from '../../utils';
 
@@ -23,9 +24,11 @@ const prepareTags = R.compose(
 const enhance = compose(
   withStateHandlers({ question: {}, isFetching: true }),
 
+  withRouter,
+
   lifecycle({
     async componentWillMount() {
-      const { questionId } = this.props.router.params;
+      const { questionId } = this.props.match.params;
       let question = {};
       if (questionId) {
         question = await db.questions.findOne(questionId);
@@ -42,10 +45,10 @@ const enhance = compose(
   withInputs(({ question }) => {
     return ({
       title: {
-        validate: value => value.length > 9,
+        validate: value => value.length >= 10,
         defaultValue: question.title },
       description: {
-        validate: value => value.length > 9,
+        validate: value => value.length >= 10,
         defaultValue: question.description,
       },
       tags: { defaultValue: question.tags && question.tags.join(' ') },
@@ -53,20 +56,20 @@ const enhance = compose(
   }),
 
   withHandlers({
-    onSubmit: ({ tags, title, description, router }) => () => {
+    onSubmit: ({ tags, title, description, history, match }) => () => {
       const document = {
         title,
         description,
         tags: prepareTags(tags),
       };
 
-      if (router.params.questionId) {
-        db.questions.update(router.params.questionId, document)
+      if (match.params.questionId) {
+        db.questions.update(match.params.questionId, document)
       } else {
         db.questions.insert(document);
       }
 
-      router.go('/');
+      history.push('/');
     }
   })
 );

@@ -1,12 +1,13 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 
 
-const NotFound = ({ router }) => (
+const NotFound = ({ location }) => (
   <div>
     <h1>404</h1>
-    <div>Sorry, page <strong>{router.location}</strong> not found!</div>
+    <div>Sorry, page <strong>{location.pathname}</strong> was not found!</div>
   </div>
-)
+);
 
 
-export default NotFound;
+export default withRouter(NotFound);

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Tags from "../Tags/Component";
+import { Link } from 'react-router-dom';
 
 
 const QuestionWrapper = styled.li`
@@ -28,44 +29,46 @@ const BottomWrapper = styled.div`
 const Title = styled.a`
   display: inline-flex;
   color: #0f0f0f;
+  font-weight: 700;
+  text-decoration: none;
   font-size: 16pt;
   padding-bottom: 10px;
-  text-decoration: none;
-  font-weight: 700;
-`;
+`.withComponent(Link);
 
 
 const Edit = styled.a`
   display: inline-flex;
-  padding: 5px 10px;
   color: #0f0f0f;
-  text-decoration: none;
   font-weight: 700;
-`;
+  text-decoration: none;
+  padding: 5px 10px;
+`.withComponent(Link);
 
 
 const Time = styled.time`
   display: inline-flex;
-  flex: 3;
-  justify-content: flex-end;
-  padding: 5px;
-  font-weight: 500;
   color: #0f0f0f;
   text-decoration: none;
+  flex: 3;
+  padding: 5px;
+  justify-content: flex-end;
+  font-weight: 500;
 `;
 
 
 const QuestionItem = ({ question }) => (
   <QuestionWrapper>
     <TopWrapper>
-      <Title href={`/question/${question._id}`}>
+      <Title to={`/question/${question._id}`}>
         {question.title}
       </Title>
-      <Edit href={`/question-form/${question._id}`}>Edit</Edit>
+
+      <Edit to={`/question/edit/${question._id}`}>Edit</Edit>
     </TopWrapper>
 
     <BottomWrapper>
       <Tags tags={question.tags} />
+
       <Time>{question.createdAt.toLocaleDateString()}</Time>
     </BottomWrapper>
   </QuestionWrapper>

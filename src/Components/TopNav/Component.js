@@ -1,10 +1,11 @@
 import React from 'react';
 import T from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
 import ApikoLogo from '../ApikoLogo';
-import TopNavButton from '../Buttons/LinkButton';
+import LinkButton from '../Buttons/LinkButton';
 import Nav from '../Nav';
 
 
@@ -15,17 +16,17 @@ const NavMenu = styled.menu`
 
 const TopNav = ({ list }) => (
   <Nav>
-    <a href="/">
+    <Link to="/">
       <ApikoLogo height={80} />
-    </a>
+    </Link>
 
     <h2>Ask Apiko</h2>
 
     <NavMenu>
       {list.map(({ label, ...props }) => (
-        <TopNavButton key={label} {...props}>
+        <LinkButton key={label} {...props}>
           {label}
-        </TopNavButton>
+        </LinkButton>
       ))}
     </NavMenu>
   </Nav>

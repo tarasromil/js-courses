@@ -1,7 +1,6 @@
 import T from 'prop-types';
 import styled from 'styled-components';
-import { withRoute } from '../utils';
-import { compose, getContext } from 'recompose';
+import { getContext } from 'recompose';
 
 
 const Layout = styled.section`
@@ -17,13 +16,10 @@ const Layout = styled.section`
 `;
 
 
-export default compose(
-  getContext({
-    user: T.object,
-    onUserChange: T.func
-  }),
-  withRoute,
-)(Layout);
+export default getContext({
+  user: T.object,
+  onUserChange: T.func
+})(Layout);
 
 
 

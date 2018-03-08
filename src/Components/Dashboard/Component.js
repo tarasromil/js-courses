@@ -1,7 +1,7 @@
 import React from 'react';
 
-import TopNavButton from '../Buttons/LinkButton/index';
-import TextInput from '../Form/TextInput/index';
+import LinkButton from '../Buttons/LinkButton';
+import TextInput from '../Form/TextInput';
 import QuestionList from '../QuestionList/Container';
 import styled from 'styled-components';
 
@@ -51,9 +51,9 @@ const Dashboard = ({ search, onChangeSearch, sortBy, onChangeSortBy }) => (
       </SortByDropdown>
 
       <ButtonWrapper>
-        <TopNavButton href="/question-form">
+        <LinkButton to="/question/new">
           Ask now!
-        </TopNavButton>
+        </LinkButton>
       </ButtonWrapper>
     </PanelWrapper>
 
