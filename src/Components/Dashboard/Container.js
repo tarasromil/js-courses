@@ -1,14 +1,11 @@
-import { withStateHandlers } from 'recompose';
+import { withInputs } from 'custom-hoc';
 import Component from './Component';
 
 
-const enhance = withStateHandlers(
-  { search: '', sortBy: 'createdAt' },
-  {
-    onChangeSearch: () => event => ({ search: event.target.value }),
-    onChangeSortBy: () => event => ({ sortBy: event.target.value }),
-  },
-);
+const enhance = withInputs({
+  search: 1,
+  sortBy: { defaultValue: 'createdAt' },
+});
 
 
 export default enhance(Component);

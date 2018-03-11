@@ -1,7 +1,7 @@
 import React from 'react';
 
 import LinkButton from '../Buttons/LinkButton';
-import TextInput from '../TextInput';
+import TextInput from '../TextInput/Component';
 import QuestionList from '../QuestionList/Container';
 import styled from 'styled-components';
 
@@ -41,17 +41,17 @@ const SortByDropdown = styled.select`
 `;
 
 
-const Dashboard = ({ search, onChangeSearch, sortBy, onChangeSortBy }) => (
+const Dashboard = ({ search, sortBy, onChange }) => (
   <MainWrapper>
     <PanelWrapper>
       <TextInput
         placeholder="Search..."
         autoFocus
         value={search}
-        onChange={onChangeSearch}
+        onChange={onChange('search')}
       />
 
-      <SortByDropdown value={sortBy} onChange={onChangeSortBy}>
+      <SortByDropdown value={sortBy} onChange={onChange('sortBy')}>
         <option value="createdAt">Time</option>
         <option value="title">Title</option>
       </SortByDropdown>

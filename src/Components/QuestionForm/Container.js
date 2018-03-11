@@ -22,14 +22,13 @@ const prepareTags = R.compose(
 
 
 const enhance = compose(
-  withStateHandlers({ question: {}, isFetching: true }),
-
   withRouter,
 
+  withStateHandlers({ question: undefined, isFetching: true }),
   lifecycle({
     async componentWillMount() {
       const { questionId } = this.props.match.params;
-      let question = {};
+      let question;
       if (questionId) {
         question = await db.questions.findOne(questionId);
       }
@@ -42,18 +41,17 @@ const enhance = compose(
     renderComponent(AppLoader)
   ),
 
-  withInputs(({ question }) => {
-    return ({
-      title: {
-        validate: value => value.length >= 10,
-        defaultValue: question.title },
-      description: {
-        validate: value => value.length >= 10,
-        defaultValue: question.description,
-      },
-      tags: { defaultValue: question.tags && question.tags.join(' ') },
-    })
-  }),
+  withInputs(({ question = {} }) => ({
+    title: {
+      validate: value => value.length >= 10,
+      defaultValue: question.title,
+    },
+    description: {
+      validate: value => value.length >= 10,
+      defaultValue: question.description,
+    },
+    tags: { defaultValue: question.tags && question.tags.join(' ') },
+  })),
 
   withHandlers({
     onSubmit: ({ tags, title, description, history, match }) => () => {
@@ -72,6 +70,7 @@ const enhance = compose(
       history.push('/');
     },
     onRemove: ({ match, history }) => () => {
+      db.questions.remove(match.params.questionId);
       history.push('/');
     },
   })

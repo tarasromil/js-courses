@@ -19,9 +19,7 @@ const defaultProps = {
 
 
 const Form = styled.form`
-  width: 50%;
   padding: 0;
-  margin: auto;
   display: flex;
   flex-direction: ${props => props.direction};
 

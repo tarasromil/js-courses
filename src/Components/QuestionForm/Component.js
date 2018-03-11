@@ -1,9 +1,10 @@
 import React from 'react';
-import TextInput from "../TextInput";
-import Button from "../Buttons/Button";
-import Header from "../Header/Component";
-import Form from "../Form/Component";
 import styled from 'styled-components';
+
+import Form from '../Form/Component';
+import Header from '../Header/Component';
+import TextInput from '../TextInput/Component';
+import Button from '../Buttons/Button';
 
 
 const Description = styled.textarea`
@@ -21,7 +22,7 @@ const ButtonWrapper = styled.div`
 `;
 
 
-const getHeader = isExists => isExists ? 'Edit Question' : 'Add Question';
+const getHeader = isEdit => isEdit ? 'Edit Question' : 'Add Question';
 
 
 const QuestionForm = ({ title, description, tags, submitReady, onChange, onSubmit, onRemove, match }) => (
@@ -51,7 +52,6 @@ const QuestionForm = ({ title, description, tags, submitReady, onChange, onSubmi
       value={tags}
       onChange={onChange('tags')}
     />
-
 
     <ButtonWrapper>
       {!!match.params.questionId && (

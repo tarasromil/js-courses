@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { Link } from 'react-router-dom';
 
-import Button from '../Buttons/Button/index';
+import FormWrapper from '../FormWrapper/Component';
 import Form from '../Form/Component';
-import TextInput from "../TextInput/index";
-import Header from "../Header/Component";
+import Header from '../Header/Component';
+import TextInput from '../TextInput/Component';
+import Button from '../Buttons/Button/index';
 
 
 const ForgotLink = styled.a`
@@ -16,35 +18,37 @@ const ForgotLink = styled.a`
 
 
 const SignIn = ({ username, password, submitReady, onChange, onSubmit }) => (
-  <Form onSubmit={onSubmit}>
-    <Header>Sign In</Header>
+  <FormWrapper>
+    <Form onSubmit={onSubmit}>
+      <Header>Sign In</Header>
 
-    <TextInput
-      autoFocus
-      value={username}
-      name="username"
-      placeholder="Username"
-      onChange={onChange('username')}
-    />
+      <TextInput
+        autoFocus
+        value={username}
+        name="username"
+        placeholder="Username"
+        onChange={onChange('username')}
+      />
 
-    <TextInput
-      value={password}
-      name="password"
-      type="password"
-      placeholder="Password"
-      onChange={onChange('password')}
-    />
+      <TextInput
+        value={password}
+        name="password"
+        type="password"
+        placeholder="Password"
+        onChange={onChange('password')}
+      />
 
-    <ForgotLink to="/restore-password">Forgot password?</ForgotLink>
+      <ForgotLink to="/restore-password">Forgot password?</ForgotLink>
 
-    <Button
-      primary
-      type="submit"
-      disabled={!submitReady}
-    >
-      Sign In
-    </Button>
-  </Form>
+      <Button
+        primary
+        type="submit"
+        disabled={!submitReady}
+      >
+        Sign In
+      </Button>
+    </Form>
+  </FormWrapper>
 );
 
 

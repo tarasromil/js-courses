@@ -15,7 +15,9 @@ const findIndexById = _id => R.findIndex(idEquals(_id));
 
 const COLLECTIONS = {
   questions: [],
-  comments: [],
+  answers: [],
+  votes: [],
+  users: [],
 };
 
 
@@ -101,7 +103,11 @@ const createCollection = name => ({
     const newDoc = { ...doc, ...fields, _id };
     COLLECTIONS[name][index] = newDoc;
     return newDoc;
-  }
+  },
+  remove: function (id) {
+    const _id = Number(id);
+    COLLECTIONS[name] = COLLECTIONS[name].filter(item => item._id !== _id);
+  },
 });
 
 
@@ -109,4 +115,5 @@ export default {
   questions: createCollection('questions'),
   answers: createCollection('answers'),
   votes: createCollection('votes'),
+  users: createCollection('users'),
 };
