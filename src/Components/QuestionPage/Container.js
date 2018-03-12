@@ -1,5 +1,4 @@
-import { branch, compose, lifecycle, renderComponent, withStateHandlers, withHandlers } from 'recompose';
-import {  withInputs } from 'custom-hoc';
+import { branch, compose, lifecycle, renderComponent, withStateHandlers } from 'recompose';
 import { withRouter } from 'react-router';
 import { db } from '../../utils';
 import AppLoader from '../Loaders/AppLoader';
@@ -7,7 +6,7 @@ import Component from './Component';
 
 
 const enhance = compose(
-  withStateHandlers({ question: {}, user: {}, isFetching: true }),
+  withStateHandlers({ question: {}, author: {}, isFetching: true }),
 
   withRouter,
 
@@ -17,9 +16,9 @@ const enhance = compose(
 
       const question = await db.questions.findOne(questionId);
 
-      const user = await db.users.findOne(question.createdById);
+      const author = await db.users.findOne(question.createdById);
 
-      this.setState({ question, user, isFetching: false });
+      this.setState({ question, author, isFetching: false });
     },
   }),
 
@@ -27,18 +26,6 @@ const enhance = compose(
     ({ isFetching }) => isFetching,
     renderComponent(AppLoader)
   ),
-
-  withInputs({
-    answer: {
-      validate: value => value.length > 0,
-    },
-  }),
-
-  withHandlers({
-    onSubmit: ({ answer }) => () => {
-      console.log(answer);
-    }
-  }),
 );
 
 

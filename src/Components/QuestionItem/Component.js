@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Tags from "../Tags/Component";
+
 import { Link } from 'react-router-dom';
+import Edit from '../Edit/Container';
+import Tags from '../Tags/Component';
 
 
 const QuestionWrapper = styled.li`
@@ -9,6 +11,7 @@ const QuestionWrapper = styled.li`
   margin-bottom: 5px;
   box-shadow: 0 8px 8px #bf7406;
 `;
+
 
 const TopWrapper = styled.div`
   display: flex;
@@ -36,15 +39,6 @@ const Title = styled.a`
 `.withComponent(Link);
 
 
-const Edit = styled.a`
-  display: inline-flex;
-  color: #0f0f0f;
-  font-weight: 700;
-  text-decoration: none;
-  padding: 5px 10px;
-`.withComponent(Link);
-
-
 const Time = styled.time`
   display: inline-flex;
   color: #0f0f0f;
@@ -63,7 +57,12 @@ const QuestionItem = ({ question }) => (
         {question.title}
       </Title>
 
-      <Edit to={`/question/edit/${question._id}`}>Edit</Edit>
+      <Edit
+        to={`/question/edit/${question._id}`}
+        createdById={question.createdById}
+      >
+        Edit
+      </Edit>
     </TopWrapper>
 
     <BottomWrapper>

@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Button from '../Buttons/Button';
-import Form from '../Form/Component';
-import AnswersList from "../AnswersList/Container";
-import TextInput from "../TextInput/Component";
+import AnswersList from '../AnswersList/Container';
+import NewAnswer from '../NewAnswer/Container';
 
 
 const Wrapper = styled.div`
@@ -23,30 +21,17 @@ const Description = styled.div`
 `;
 
 
-const QuestionPage = ({ question, user, answer, onChange, onSubmit, submitReady }) => (
+const QuestionPage = ({ question, author }) => (
   <Wrapper>
     <Title>{question.title}</Title>
-    <div>By: <strong>{user.profile.fullName}</strong></div>
+
+    <div>By: <strong>{author.profile.fullName}</strong></div>
 
     <Description>{question.description}</Description>
 
-
     <AnswersList />
 
-    <Form onSubmit={onSubmit}>
-      <TextInput
-        placeholder="Type your comment here..."
-        value={answer}
-        onChange={onChange('answer')}
-      />
-
-      <Button
-        primary
-        disabled={!submitReady}
-      >
-        Answer
-      </Button>
-    </Form>
+    <NewAnswer />
   </Wrapper>
 );
 

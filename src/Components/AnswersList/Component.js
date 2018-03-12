@@ -58,18 +58,18 @@ const AnswerBottomWrapper = styled.div`
 const AnswerBottom = styled.span``;
 
 
-const AnswersList = ({ answers, votes, users }) => (
+const AnswersList = ({ answers, votes, users, onVote, user }) => (
   <Answers>
     {answers.map(answer => {
       const currentVotes = votes.filter(vote => vote.answerId === answer._id);
       const { positive, negative } = divideVotes(currentVotes);
-      const user = users.find(user => user._id === answer.createdById)
+      const author = users.find(user => user._id === answer.createdById)
         || { profile: { fullName: 'Anonymous' } };
       return (
         <Answer key={answer._id}>
           <Votes>
-            <button>{positive} +</button>
-            <button>{negative} -</button>
+            <button disabled={!user} onClick={() => onVote(answer._id, true)}>{positive} +</button>
+            <button disabled={!user} onClick={() => onVote(answer._id, false)}>{negative} -</button>
           </Votes>
 
           <AnswerWrapper>
@@ -77,7 +77,7 @@ const AnswersList = ({ answers, votes, users }) => (
 
             <AnswerBottomWrapper>
               <AnswerBottom>
-                By: <strong>{user.profile.fullName}</strong>
+                By: <strong>{author.profile.fullName}</strong>
               </AnswerBottom>
 
               <AnswerBottom>

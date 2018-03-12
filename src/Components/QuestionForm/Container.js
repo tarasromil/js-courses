@@ -1,8 +1,9 @@
+import React from 'react';
 import { compose, withHandlers, lifecycle, withStateHandlers, branch, renderComponent } from 'recompose';
 import { withInputs } from 'custom-hoc';
-import { withRouter } from 'react-router';
+import { withRouter, Redirect } from 'react-router';
 import * as R from 'ramda';
-import { db } from '../../utils';
+import { db, withUser } from '../../utils';
 
 import Component from './Component';
 import AppLoader from '../Loaders/AppLoader';
@@ -25,6 +26,7 @@ const enhance = compose(
   withRouter,
 
   withStateHandlers({ question: undefined, isFetching: true }),
+
   lifecycle({
     async componentWillMount() {
       const { questionId } = this.props.match.params;
@@ -39,6 +41,13 @@ const enhance = compose(
   branch(
     ({ isFetching }) => isFetching,
     renderComponent(AppLoader)
+  ),
+
+  withUser,
+
+  branch(
+    ({ user, question = {} }) => !user || question.createdById !== user._id,
+    renderComponent(() => <Redirect to="/"/>),
   ),
 
   withInputs(({ question = {} }) => ({
