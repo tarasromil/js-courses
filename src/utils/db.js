@@ -59,7 +59,6 @@ const MAPS = {
     email: item.email,
     profile: {
       fullName: item.name,
-      post: item.company.bs
     },
     services: {},
   }),
@@ -106,8 +105,7 @@ const createCollection = name => ({
     COLLECTIONS[name][index] = newDoc;
     return newDoc;
   },
-  remove: function (id) {
-    const _id = Number(id);
+  remove: function (_id) {
     COLLECTIONS[name] = COLLECTIONS[name].filter(item => item._id !== _id);
   },
 });
