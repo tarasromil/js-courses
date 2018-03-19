@@ -37,15 +37,19 @@ const enhance = compose(
     props => ({
       user: props.user,
       onUserChange: (user) => {
-        const userDoc = {
-          _id: user._id,
-          email: user.email || 'apiko@apiko.com',
-          profile: {
-            fullName: user.username,
-          },
-          services: {},
-        };
-        db.users.insert(userDoc);
+        let userDoc;
+        if (user) {
+          userDoc = {
+            _id: user._id,
+            email: user.email || 'apiko@apiko.com',
+            profile: {
+              fullName: user.username,
+            },
+            services: {},
+          };
+          db.users.insert(userDoc);
+        }
+
         props.onUserChange(userDoc);
       },
     }),
