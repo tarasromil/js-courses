@@ -22,7 +22,7 @@ const sortWith = sortBy => R.sortWith([DIRECTION[sortBy](R.prop(sortBy))]);
 const prepareQuestions = ({ questions, search, limit, sortBy }) => R.compose(
   R.take(limit),
   sortWith(sortBy),
-  filterByTitle(search.replace(/\\/g, '')),
+  filterByTitle(search.replace(/[\\\[\]<>+-{}]/g, '')),
 )(questions);
 
 
