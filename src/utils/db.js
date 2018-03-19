@@ -85,16 +85,22 @@ const createCollection = name => ({
       return found;
     }
     return await fetchAndMap(getUrl(name, _id), MAPS[name]).then(item => {
-      if (!findById(item._id)) {
-        COLLECTIONS[name] = COLLECTIONS[name].concat(item);
+      if (Number(item._id)) {
+        if (!findById(item._id)) {
+          COLLECTIONS[name] = COLLECTIONS[name].concat(item);
+        }
+        return item;
       }
-      return item;
     });
   },
   insert: function(doc) {
     const ids = COLLECTIONS[name].map(R.prop('_id'));
-    const lastId = Math.max(...ids);
-    const newDoc = { ...doc, createdAt: new Date(), _id: String(lastId + 1) };
+    const lastId = Math.max(...ids) || 0;
+    const newDoc = {
+      _id: String(lastId + 1),
+      ...doc,
+      createdAt: new Date(),
+    };
     COLLECTIONS[name] = COLLECTIONS[name].concat(newDoc);
     return newDoc;
   },

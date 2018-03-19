@@ -1,6 +1,7 @@
 import React from 'react';
 import T from 'prop-types';
 import { compose, withContext, withState } from 'recompose';
+import { db } from './utils';
 import styled from 'styled-components';
 
 import TopNavContainer from './Components/TopNav/Container';
@@ -35,7 +36,18 @@ const enhance = compose(
     },
     props => ({
       user: props.user,
-      onUserChange: props.onUserChange,
+      onUserChange: (user) => {
+        const userDoc = {
+          _id: user._id,
+          email: user.email || 'apiko@apiko.com',
+          profile: {
+            fullName: user.username,
+          },
+          services: {},
+        };
+        db.users.insert(userDoc);
+        props.onUserChange(userDoc);
+      },
     }),
   )
 );

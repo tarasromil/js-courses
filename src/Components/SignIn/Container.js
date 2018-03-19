@@ -14,7 +14,7 @@ const enhance = compose(
   withUser,
   withHandlers({
     onSubmit: ({ onUserChange, username, password, history }) => () => {
-      onUserChange({ username, password, id: 1 });
+      onUserChange({ username, password, _id: '1' });
 
       history.push('/');
     }

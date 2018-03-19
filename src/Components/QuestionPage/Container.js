@@ -1,5 +1,6 @@
+import React from 'react';
 import { branch, compose, lifecycle, renderComponent, withStateHandlers } from 'recompose';
-import { withRouter } from 'react-router';
+import { Redirect, withRouter } from 'react-router';
 import { db } from '../../utils';
 import AppLoader from '../Loaders/AppLoader';
 import Component from './Component';
@@ -10,22 +11,28 @@ const enhance = compose(
 
   withRouter,
 
-  lifecycle({
-    async componentWillMount() {
-      const questionId = Number(this.props.match.params.questionId);
+  branch(
+    ({ match }) => match.params.questionId,
+    lifecycle({
+      async componentWillMount() {
+        const questionId = this.props.match.params.questionId;
 
-      const question = await db.questions.findOne(questionId);
+        const question = await db.questions.findOne(questionId);
+        let author;
+        if (question) {
+          author = await db.users.findOne(question.createdById);
+        }
 
-      const author = await db.users.findOne(question.createdById);
-
-      this.setState({ question, author, isFetching: false });
-    },
-  }),
+        this.setState({ question, author, isFetching: false });
+      },
+    }),
+  ),
 
   branch(
     ({ isFetching }) => isFetching,
     renderComponent(AppLoader)
   ),
+  branch(({ question }) => !question, renderComponent(() => <Redirect to="/not-found" />))
 );
 
 

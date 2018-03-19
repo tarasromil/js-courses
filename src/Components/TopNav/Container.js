@@ -16,7 +16,7 @@ const MENU_ITEMS = {
 
 
 const getItemsForUser = ({ onUserChange, user }) => [
-  { label: `Hello, ${user.username}`, to: '' },
+  { label: `Hello, ${user.profile.fullName}`, to: '' },
   { label: 'Sing Out', to: '', onClick: () => onUserChange() },
 ];
 
