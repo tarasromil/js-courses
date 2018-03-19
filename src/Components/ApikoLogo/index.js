@@ -1,5 +1,5 @@
 import React from 'react';
-import short from './short.svg';
+import short from './loader.gif';
 import long from './long.png';
 import styled from 'styled-components';
 
