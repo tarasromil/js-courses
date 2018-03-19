@@ -1,11 +1,15 @@
-import { withInputs } from 'custom-hoc';
+import { compose, withInputs } from 'custom-hoc';
+import { withUser } from '../../utils';
 import Component from './Component';
 
 
-const enhance = withInputs({
-  search: 1,
-  sortBy: { defaultValue: 'createdAt' },
-});
+const enhance = compose(
+  withUser,
+  withInputs({
+    search: 1,
+    sortBy: { defaultValue: 'createdAt' },
+  }),
+);
 
 
 export default enhance(Component);

@@ -18,10 +18,6 @@ const PanelWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   
-  > ${TextInput} {
-    flex-basis: 60%;
-  }
-  
   > *:not(:last-child) {
     margin-right: 10px;
   }
@@ -41,7 +37,7 @@ const SortByDropdown = styled.select`
 `;
 
 
-const Dashboard = ({ search, sortBy, onChange }) => (
+const Dashboard = ({ search, sortBy, onChange, user }) => (
   <MainWrapper>
     <PanelWrapper>
       <TextInput
@@ -56,9 +52,11 @@ const Dashboard = ({ search, sortBy, onChange }) => (
         <option value="title">Title</option>
       </SortByDropdown>
 
-      <AskButton to="/question/new">
-        Ask now!
-      </AskButton>
+      {user && (
+        <AskButton to="/question/new">
+          Ask now!
+        </AskButton>
+      )}
     </PanelWrapper>
 
     <QuestionList search={search} sortBy={sortBy} />
