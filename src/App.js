@@ -13,7 +13,7 @@ const RootWrapper = styled.div`
   flex: 1;
   flex-direction: column;
   max-width: 900px;
-  margin: auto;
+  margin: 0 auto 50px;
   padding: 0 15px;
 `;
 
