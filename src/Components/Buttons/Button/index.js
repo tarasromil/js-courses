@@ -6,7 +6,7 @@ const Button = styled.button`
   font-weight: bold;
   text-decoration: none;
   outline: none;
-  transition: box-shadow 300ms, color 250ms, background 100ms;
+  transition: box-shadow 200, color, background 100ms;
   border: ${props => props.primary ? 'none' : '3px solid #ff9f00'};
   padding: ${props => props.primary ? '10px 20px' : '5px 10px'};
   background: ${props => props.primary ? '#00a0ff' : '#fff'};
@@ -14,7 +14,7 @@ const Button = styled.button`
   font-size: ${props => props.primary ? '14pt' : '12pt'};
 
   &:hover:not([disabled]) {
-    box-shadow: 0 3px 6px ${props => props.primary ? '#797979' : '#ff000c'};
+    box-shadow: 0 3px 6px ${props => props.primary ? '#8f8f8f' : '#ff000c'};
   }
   
   &:active {

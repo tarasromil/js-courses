@@ -13,7 +13,7 @@ const LinkButton = styled.a`
   color: #000;
   font-weight: 700;
   text-decoration: none;
-  transition: box-shadow 300ms, color 250ms, background 100ms;
+  transition: box-shadow 200ms, color, background 100ms;
   
   &:hover {
     box-shadow: 0 3px 6px #000;

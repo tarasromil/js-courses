@@ -8,8 +8,8 @@ import Tags from '../Tags/Component';
 
 const QuestionWrapper = styled.li`
   padding: 10px;
-  margin-bottom: 5px;
-  box-shadow: 0 8px 8px #bf7406;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px #5b5b5b;
 `;
 
 
