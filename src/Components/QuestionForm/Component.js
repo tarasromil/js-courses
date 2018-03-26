@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Form from '../Form/Component';
-import Header from '../Header/Component';
 import TextInput from '../TextInput/Component';
 import Button from '../Buttons/Button';
+import StyledHeader from '../Common/StyledHeader';
 
 
 const Description = styled.textarea`
@@ -27,9 +27,9 @@ const getHeader = isEdit => isEdit ? 'Edit Question' : 'Add Question';
 
 const QuestionForm = ({ title, description, tags, submitReady, onChange, onSubmit, onRemove, match }) => (
   <Form onSubmit={onSubmit}>
-    <Header>
+    <StyledHeader>
       {getHeader(match.params.questionId)}
-    </Header>
+    </StyledHeader>
 
     <TextInput
       autoFocus

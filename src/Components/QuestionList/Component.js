@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from "../Buttons/Button/index";
 import QuestionItem from "../QuestionItem/Component";
-import Header from '../Header/Component';
-
+import StyledHeader from '../Common/StyledHeader';
 
 const List = styled.ul`
   list-style: none;
@@ -11,10 +10,9 @@ const List = styled.ul`
   padding: 0;
 `;
 
-
 const QuestionList = ({ questions, onIncreaseLimit }) => (
   <React.Fragment>
-    <Header>Users ask: ({questions.length})</Header>
+    <StyledHeader>Users ask: ({questions.length})</StyledHeader>
 
     <List>
       {questions.length > 0 ?

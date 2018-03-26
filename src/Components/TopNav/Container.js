@@ -1,4 +1,5 @@
 import T from 'prop-types';
+import { connect } from 'react-redux';
 import { compose, getContext, withProps } from 'recompose';
 import TopNavComponent from './Component';
 
@@ -15,8 +16,8 @@ const MENU_ITEMS = {
 };
 
 
-const getItemsForUser = ({ onUserChange, user }) => [
-  { label: `Hello, ${user.profile.fullName}`, to: '' },
+const getItemsForUser = ({ onUserChange, username }) => [
+  { label: `Hello, ${username}`, to: '' },
   { label: 'Sing Out', to: '', onClick: () => onUserChange() },
 ];
 
@@ -26,12 +27,16 @@ const generateList = props => [].concat(
   props.user ? getItemsForUser(props) : MENU_ITEMS.LOGGED_OUT
 );
 
+const mapStateToProps = state => ({
+  username: state.user.username
+});
 
 export default compose(
   getContext({
     user: T.object,
     onUserChange: T.func,
   }),
+  connect(mapStateToProps),
   withProps(props => ({
     list: generateList(props),
   })),
