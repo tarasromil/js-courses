@@ -1,6 +1,6 @@
 import { sortTypes } from './';
 
-const defaultState = 1;
+const defaultState = 'createdAt';
 
 export default (state = defaultState, action) => {
   switch (action.type) {

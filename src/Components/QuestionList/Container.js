@@ -29,7 +29,7 @@ const prepareQuestions = ({ questions, search, limit, sortBy }) => R.compose(
 
 const mapStateToProps = state => ({
   search: state.search,
-  // sortBy: state.sort,
+  sortBy: state.sort,
 });
 
 const enhance = compose(

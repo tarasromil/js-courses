@@ -28,16 +28,21 @@ const SortByDropdown = styled.select`
   background: #fff;
 `;
 
-const Header = ({ search, sortBy, onChange, user, changeSearchValue, clearSearchValue }) => (
+const Header = ({ search, sortBy, user, changeSearchValue, clearSearchValue, setSorting }) => (
   <PanelWrapper>
     <TextInput
       placeholder="Search..."
       autoFocus
       value={search}
+      // Works this way
       onChange={(e) => { changeSearchValue(e.target.value) }}
     />
 
-    <SortByDropdown value={sortBy} >
+    <SortByDropdown
+      value={sortBy}
+      // And this as well
+      onChange={setSorting}
+    >
       <option value="createdAt">Time</option>
       <option value="title">Title</option>
     </SortByDropdown>

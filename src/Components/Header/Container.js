@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
 import { searchActions } from '../../modules/search';
+import { sortActions } from '../../modules/sort';
 import Component from './Component';
 
 const mapStateToProps = state => ({
@@ -12,7 +13,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => ({
   changeSearchValue: value => dispatch(searchActions.setSearch(value)),
-  clearSearchValue: () => dispatch(searchActions.clearSearch())
+  clearSearchValue: () => dispatch(searchActions.clearSearch()),
+  setSorting: e => dispatch(sortActions.setSort(e.target.value)),
 });
 
 const enhancer = compose(
