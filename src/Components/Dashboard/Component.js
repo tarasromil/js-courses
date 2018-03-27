@@ -12,7 +12,7 @@ const MainWrapper = styled.div`
 
 const Dashboard = ({ search, sortBy, onChange, user }) => (
   <MainWrapper>
-    <Header search={search} sortBy={sortBy} onChange={onChange} user={user} />
+    <Header user={user} />
     <QuestionList search={search} sortBy={sortBy} />
   </MainWrapper>
 );

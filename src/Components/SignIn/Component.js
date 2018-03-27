@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import FormWrapper from '../FormWrapper/Component';
 import Form from '../Form/Component';
-import Header from '../Header/Component';
+import StyledHeader from '../Common/StyledHeader';
 import TextInput from '../TextInput/Component';
 import Button from '../Buttons/Button/index';
 
@@ -20,7 +20,7 @@ const ForgotLink = styled.a`
 const SignIn = ({ username, password, submitReady, onChange, onSubmit }) => (
   <FormWrapper>
     <Form onSubmit={onSubmit}>
-      <Header>Sign In</Header>
+      <StyledHeader>Sign In</StyledHeader>
 
       <TextInput
         autoFocus
