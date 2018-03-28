@@ -1,8 +1,6 @@
 import { userTypes } from './';
 
-const defaultState = {
-  user: null,
-};
+const defaultState = null;
 
 export default (state = defaultState, action) => {
   switch (action.type) {

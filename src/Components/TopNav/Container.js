@@ -28,7 +28,7 @@ const generateList = props => [].concat(
 );
 
 const mapStateToProps = state => ({
-  username: state.user.username
+  username: state.user && state.user.username
 });
 
 export default compose(
