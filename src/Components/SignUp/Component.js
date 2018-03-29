@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import TextInput from "../TextInput/Component";
 import Button from "../Buttons/Button/index";
-import Header from "../Header/Component";
+import StyledHeader from "../Common/StyledHeader";
 import Form from "../Form/Component";
 
 
@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 const SignUp = ({ onSubmit, submitReady, onChange, username, password, email }) => (
   <Wrapper>
     <Form onSubmit={onSubmit}>
-      <Header>Sign Up</Header>
+      <StyledHeader>Sign Up</StyledHeader>
 
       <TextInput
         autoFocus

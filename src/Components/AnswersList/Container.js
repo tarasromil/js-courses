@@ -1,12 +1,17 @@
 import { compose, withStateHandlers, withHandlers, lifecycle, branch, renderComponent } from 'recompose';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { db, withUser } from '../../utils';
 
 import AppLoader from '../Loaders/AppLoader';
 import Component from './Component';
 
+const mapStateToProps = state => ({
+  // TODO: CODE FOR YOUR HOMEWORK HERE
+});
 
 const enhance = compose(
+  connect(mapStateToProps),
   withStateHandlers({ answers: [], users: [], votes: [], isFetching: true }),
 
   withRouter,

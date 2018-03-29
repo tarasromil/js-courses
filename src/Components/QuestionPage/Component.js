@@ -20,14 +20,32 @@ const Description = styled.div`
   padding: 15px 0;
 `;
 
+const SortByDropdown = styled.select`
+  flex-basis: 20%;
+  padding: 0 10px;
+  font-size: 16pt;
+  background: #fff;
+  max-width: 100px;
+  margin-bottom: 30px;
+`;
 
-const QuestionPage = ({ question, author }) => (
+
+const QuestionPage = ({ question, author, setAnswerSorting, sortBy }) => (
   <Wrapper>
     <Title>{question.title}</Title>
 
     <div>By: <strong>{author.profile.fullName}</strong></div>
 
     <Description>{question.description}</Description>
+
+  <SortByDropdown
+    // value={sortBy}
+    onChange={setAnswerSorting}
+  >
+      <option value="createdAt">Time</option>
+      <option value="best">Best</option>
+      <option value="worst">Worst</option>
+  </SortByDropdown>
 
     <AnswersList />
 
