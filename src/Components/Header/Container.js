@@ -17,8 +17,4 @@ const mapDispatchToProps = (dispatch) => ({
   setSorting: e => dispatch(sortActions.setSort(e.target.value)),
 });
 
-const enhancer = compose(
-  connect(mapStateToProps, mapDispatchToProps),
-);
-
-export default enhancer(Component);
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

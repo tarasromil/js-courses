@@ -5,4 +5,8 @@ const signIn = user => ({
   value: user,
 });
 
-export default { signIn };
+const signOut = user => ({
+  type: userTypes.SIGN_OUT,
+});
+
+export default { signIn, signOut };

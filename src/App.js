@@ -3,6 +3,8 @@ import T from 'prop-types';
 import { compose, withContext, withState } from 'recompose';
 import { db } from './utils';
 import styled from 'styled-components';
+import { userActions } from './modules/user';
+import store from './modules/store';
 
 import TopNavContainer from './Components/TopNav/Container';
 import Routes from './Components/Routes/Component';
@@ -49,6 +51,8 @@ const enhance = compose(
             services: {},
           };
           db.users.insert(userDoc);
+        } else {
+          store.dispatch(userActions.signOut());
         }
 
         props.onUserChange(userDoc);

@@ -35,7 +35,9 @@ const StyledButton = styled.button`
   font-size: 13px;
 `;
 
-const Header = ({ search, sortBy, user, changeSearchValue, clearSearchValue, setSorting }) => (
+const Header = (
+    { search, sortBy, user, changeSearchValue, clearSearchValue, setSorting }
+  ) => (
   <PanelWrapper>
     <TextInput
       placeholder="Search..."
@@ -45,11 +47,7 @@ const Header = ({ search, sortBy, user, changeSearchValue, clearSearchValue, set
       onChange={(e) => { changeSearchValue(e.target.value) }}
     />
 
-    <StyledButton
-      onClick={clearSearchValue}
-    >
-      Clear
-    </StyledButton>
+    <StyledButton onClick={clearSearchValue}>Clear</StyledButton>
 
     <SortByDropdown
       value={sortBy}

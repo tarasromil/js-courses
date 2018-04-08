@@ -16,8 +16,8 @@ const MENU_ITEMS = {
 };
 
 
-const getItemsForUser = ({ onUserChange, username }) => [
-  { label: `Hello, ${username}`, to: '' },
+const getItemsForUser = ({ onUserChange, user }) => [
+  { label: `Hello, ${user.username}`, to: '' },
   { label: 'Sing Out', to: '', onClick: () => onUserChange() },
 ];
 
@@ -28,7 +28,7 @@ const generateList = props => [].concat(
 );
 
 const mapStateToProps = state => ({
-  username: state.user && state.user.username
+  user: state.user
 });
 
 export default compose(
