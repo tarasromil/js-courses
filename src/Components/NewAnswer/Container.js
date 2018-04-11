@@ -1,12 +1,16 @@
 import { withInputs, shouldRender } from 'custom-hoc';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { compose, withHandlers } from 'recompose';
-import { db, withUser } from '../../utils';
+import { db } from '../../utils';
 import Component from './Component';
 
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
 
 const enhance = compose(
-  withUser,
+  connect(mapStateToProps),
   shouldRender(props => props.user),
   withInputs({
     answer: {
