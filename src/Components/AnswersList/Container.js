@@ -8,7 +8,6 @@ import Component from './Component';
 
 const mapStateToProps = state => ({
   user: state.user,
-  // TODO: CODE FOR YOUR HOMEWORK HERE
 });
 
 const enhance = compose(

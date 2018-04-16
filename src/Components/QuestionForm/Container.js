@@ -1,13 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { compose, withHandlers, lifecycle, withStateHandlers, branch, renderComponent } from 'recompose';
 import { withInputs } from 'custom-hoc';
 import { withRouter, Redirect } from 'react-router';
 import * as R from 'ramda';
-import { db, withUser } from '../../utils';
+import { db } from '../../utils';
+import { loaderActions } from '../../modules/loader';
 
 import Component from './Component';
 import AppLoader from '../Loaders/AppLoader';
-
 
 const unique = array => [...new Set(array)];
 
@@ -21,8 +22,13 @@ const prepareTags = R.compose(
   stripSpaces,
 );
 
+const mapStateToProps = (state) => ({
+  user: state.user,
+  // TODO: HOMEWORK 9: pick loader from here and display in UI when the post is creating
+});
 
 const enhance = compose(
+  connect(mapStateToProps),
   withRouter,
 
   withStateHandlers({ question: {}, isFetching: true }),
@@ -43,8 +49,6 @@ const enhance = compose(
     renderComponent(AppLoader)
   ),
 
-  withUser,
-
   branch(
     ({ user, question }) => !user || (question._id && question.createdById !== user._id),
     renderComponent(() => <Redirect to="/"/>),
@@ -63,7 +67,7 @@ const enhance = compose(
   })),
 
   withHandlers({
-    onSubmit: ({ tags, title, description, history, user, match }) => () => {
+    onSubmit: ({ tags, title, description, history, user, match, dispatch }) => () => {
       const document = {
         title,
         description,
@@ -72,12 +76,11 @@ const enhance = compose(
       };
 
       if (match.params.questionId) {
-        db.questions.update(match.params.questionId, document)
+        db.questions.update(match.params.questionId, document);
+        history.push('/');
       } else {
-        db.questions.insert(document);
+        // TODO: HOMEWORK 9: make it work, dispatch loaderActions.createQuestion with db, document and history as arguments
       }
-
-      history.push('/');
     },
     onRemove: ({ match, history }) => () => {
       db.questions.remove(match.params.questionId);
